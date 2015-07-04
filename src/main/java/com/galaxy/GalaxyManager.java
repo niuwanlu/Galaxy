@@ -8,7 +8,7 @@ import com.galaxy.processor.UnitStateProcessor;
  */
 public class GalaxyManager {
 
-    private UnitStateProcessor unitStateProcessor = new UnitStateProcessor();
+    private UnitStateProcessor unitStateProcessor;
 
     public GalaxyManager() {
         unitStateProcessor = new UnitStateProcessor();
