@@ -2,6 +2,7 @@ package com.galaxy;
 
 import com.galaxy.calculator.UnitTotalCalculator;
 import com.galaxy.constant.Constants;
+import com.galaxy.constant.RomanNum;
 import com.galaxy.processor.UnitStateProcessor;
 
 /**
@@ -11,15 +12,18 @@ public class GalaxyManager {
 
     private UnitStateProcessor unitStateProcessor;
     private UnitTotalCalculator unitTotalCalculator;
+    private UnitMapper unitMapper;
 
     public GalaxyManager() {
         unitStateProcessor = new UnitStateProcessor();
         unitTotalCalculator = new UnitTotalCalculator();
+        unitMapper = new UnitMapper();
     }
 
-    public GalaxyManager(UnitStateProcessor unitStateProcessor, UnitTotalCalculator unitTotalCalculator) {
+    public GalaxyManager(UnitStateProcessor unitStateProcessor, UnitTotalCalculator unitTotalCalculator, UnitMapper unitMapper) {
         this.unitStateProcessor = unitStateProcessor;
         this.unitTotalCalculator = unitTotalCalculator;
+        this.unitMapper = unitMapper;
     }
 
     public void processInput(String input) {
@@ -27,7 +31,9 @@ public class GalaxyManager {
         String type = InputLineTypeHelper.getInputType(input);
 
         if (type.equals(Constants.UNIT_STATE)) {
-            unitStateProcessor.process(input);
+            String unitName = unitStateProcessor.getUnitName(input);
+            RomanNum romanNum = unitStateProcessor.getRomanNumeral(input);
+            unitMapper.putIntoUnitMap(unitName, romanNum);
         } else if (type.equals(Constants.UNIT_QUESTION)) {
             unitTotalCalculator.process(input);
         }
