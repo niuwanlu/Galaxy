@@ -1,11 +1,12 @@
 package com.galaxy;
 
-import static com.galaxy.Constants.*;
+import static com.galaxy.constant.Constants.*;
 
 /**
  * Created by wlniu on 04/07/15.
  */
-public class InputLineTypeManager {
+public class InputLineTypeHelper {
+
     public static String getInputType(String inputLine) {
         if (inputLine.contains("how many")) {
             return CREDIT_QUESTION;
@@ -25,4 +26,5 @@ public class InputLineTypeManager {
 
         return WHAT_ARE_YOU_TALKING;
     }
+
 }

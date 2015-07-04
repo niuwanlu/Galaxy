@@ -1,4 +1,4 @@
-package com.galaxy;
+package com.galaxy.constant;
 
 /**
  * Created by wlniu on 04/07/15.
