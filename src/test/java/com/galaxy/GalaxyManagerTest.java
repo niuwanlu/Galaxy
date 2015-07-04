@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -31,7 +32,7 @@ public class GalaxyManagerTest {
     }
 
     @Test
-    public void shouldGetUnitNameAndRomanNumWhenUnitState() throws Exception {
+    public void shouldPutUnitNameAndRomanNumIntoMapWhenUnitState() throws Exception {
         when(unitStateProcessor.getUnitName("glob is I")).thenReturn("glob");
         when(unitStateProcessor.getRomanNumeral("glob is I")).thenReturn(RomanNum.I);
         galaxyManager.processInput("glob is I");
@@ -43,6 +44,8 @@ public class GalaxyManagerTest {
     @Test
     public void shouldInvokeUnitTotalCalculatorWhenPriceQuestion() throws Exception {
         galaxyManager.processInput("how much is pish tegj?");
-        verify(unitTotalCalculator).process("how much is pish tegj?");
+        verify(unitTotalCalculator).getUnitList("how much is pish tegj?");
+        verify(unitMapper).getTotalValueOfUnitList(any(String[].class));
     }
+
 }

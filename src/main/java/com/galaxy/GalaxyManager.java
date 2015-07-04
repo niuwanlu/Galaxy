@@ -35,7 +35,8 @@ public class GalaxyManager {
             RomanNum romanNum = unitStateProcessor.getRomanNumeral(input);
             unitMapper.putIntoUnitMap(unitName, romanNum);
         } else if (type.equals(Constants.UNIT_QUESTION)) {
-            unitTotalCalculator.process(input);
+            String[] unitList = unitTotalCalculator.getUnitList(input);
+            int totalValue = unitMapper.getTotalValueOfUnitList(unitList);
         }
 
     }

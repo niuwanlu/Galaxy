@@ -27,4 +27,12 @@ public class UnitMapper {
     public RomanNum getValeByUnit(String unit) {
         return unitMap.get(unit);
     }
+
+    public int getTotalValueOfUnitList(String[] unitList) {
+        int totalValue = 0;
+        for (String unit : unitList) {
+            totalValue += getValeByUnit(unit).getValue();
+        }
+        return totalValue;
+    }
 }
