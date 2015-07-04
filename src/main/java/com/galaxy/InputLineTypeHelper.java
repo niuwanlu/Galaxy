@@ -17,7 +17,7 @@ public class InputLineTypeHelper {
         }
 
         if (inputLine.contains("how much is")) {
-            return PRICE_QUESTION;
+            return UNIT_QUESTION;
         }
 
         if (inputLine.contains("is")) {

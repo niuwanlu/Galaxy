@@ -52,8 +52,4 @@ public class UnitStateProcessorTest {
         verify(unitMapper).putIntoUnitMap("glob", RomanNum.I);
     }
 
-    @Test
-    public void shouldGetValueByIntergalacticUnit() throws Exception {
-        assertEquals(1, unitStateProcessor.getValueByIntergalacticUnit("glob"));
-    }
 }
