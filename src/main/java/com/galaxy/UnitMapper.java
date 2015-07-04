@@ -24,4 +24,7 @@ public class UnitMapper {
         unitMap.put(unitName, romanNum);
     }
 
+    public RomanNum getValeByUnit(String unit) {
+        return unitMap.get(unit);
+    }
 }

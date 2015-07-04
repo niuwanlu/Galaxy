@@ -33,4 +33,8 @@ public class UnitStateProcessor {
         String[] words = input.split(" is ", 2);
         return RomanNum.valueOf(words[1]);
     }
+
+    public RomanNum getValueByIntergalacticUnit(String unit) {
+        return unitMapper.getValeByUnit(unit);
+    }
 }
