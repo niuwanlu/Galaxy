@@ -30,8 +30,17 @@ public class UnitMapper {
 
     public int getTotalValueOfUnitList(String[] unitList) {
         int totalValue = 0;
-        for (String unit : unitList) {
-            totalValue += getValeByUnit(unit).getValue();
+        int currValue = 0;
+        int nextValue = 0;
+        for (int i = 0; i < unitList.length - 1; i++) {
+            currValue = getValeByUnit(unitList[i]).getValue();
+            nextValue = getValeByUnit(unitList[i+1]).getValue();
+            if (currValue < nextValue) {
+                totalValue -= currValue;
+            } else {
+                totalValue += currValue;
+            }
+            totalValue += nextValue;
         }
         return totalValue;
     }
