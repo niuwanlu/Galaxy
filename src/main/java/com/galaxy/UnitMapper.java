@@ -40,8 +40,8 @@ public class UnitMapper {
             } else {
                 totalValue += currValue;
             }
-            totalValue += nextValue;
         }
+        totalValue += nextValue;
         return totalValue;
     }
 }
