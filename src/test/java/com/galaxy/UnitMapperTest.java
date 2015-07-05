@@ -41,8 +41,9 @@ public class UnitMapperTest {
     @Test
     public void shouldCheckValueWhenGetTotalValue() throws Exception {
         String[] unitList = {"glob", "glob"};
+        unitMapper.putIntoUnitMap("glob", RomanNum.I);
         unitMapper.getTotalValueOfUnitList(unitList);
-        verify(unitMapper, times(2)).getValeByUnit("glob");
+        verify(unitMapper, atLeast(2)).getValeByUnit("glob");
     }
 
     @Test

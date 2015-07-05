@@ -1,28 +1,24 @@
 package com.galaxy;
 
-import com.galaxy.calculator.UnitTotalCalculator;
 import com.galaxy.constant.Constants;
 import com.galaxy.constant.RomanNum;
-import com.galaxy.processor.UnitStateProcessor;
+import com.galaxy.processor.InputLineParser;
 
 /**
  * Created by wlniu on 04/07/15.
  */
 public class GalaxyManager {
 
-    private UnitStateProcessor unitStateProcessor;
-    private UnitTotalCalculator unitTotalCalculator;
+    private InputLineParser inputLineParser;
     private UnitMapper unitMapper;
 
     public GalaxyManager() {
-        unitStateProcessor = new UnitStateProcessor();
-        unitTotalCalculator = new UnitTotalCalculator();
+        inputLineParser = new InputLineParser();
         unitMapper = new UnitMapper();
     }
 
-    public GalaxyManager(UnitStateProcessor unitStateProcessor, UnitTotalCalculator unitTotalCalculator, UnitMapper unitMapper) {
-        this.unitStateProcessor = unitStateProcessor;
-        this.unitTotalCalculator = unitTotalCalculator;
+    public GalaxyManager(InputLineParser inputLineParser, UnitMapper unitMapper) {
+        this.inputLineParser = inputLineParser;
         this.unitMapper = unitMapper;
     }
 
@@ -31,11 +27,11 @@ public class GalaxyManager {
         String type = InputLineTypeHelper.getInputType(input);
 
         if (type.equals(Constants.UNIT_STATE)) {
-            String unitName = unitStateProcessor.getUnitName(input);
-            RomanNum romanNum = unitStateProcessor.getRomanNumeral(input);
+            String unitName = inputLineParser.getUnitName(input);
+            RomanNum romanNum = inputLineParser.getRomanNumeral(input);
             unitMapper.putIntoUnitMap(unitName, romanNum);
         } else if (type.equals(Constants.UNIT_QUESTION)) {
-            String[] unitList = unitTotalCalculator.getUnitList(input);
+            String[] unitList = inputLineParser.getUnitList(input);
             int totalValue = unitMapper.getTotalValueOfUnitList(unitList);
         }
 
