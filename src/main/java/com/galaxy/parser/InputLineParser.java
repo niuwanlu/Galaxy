@@ -1,4 +1,4 @@
-package com.galaxy.processor;
+package com.galaxy.parser;
 
 import com.galaxy.constant.RomanNum;
 
@@ -18,9 +18,13 @@ public class InputLineParser {
     }
 
     public String[] getUnitList(String input) {
-        String listStrWithQuestionMark = input.split(" is ")[1];
-        String listStr = listStrWithQuestionMark.substring(0, listStrWithQuestionMark.length()-1);
+        String listStr = getListString(input);
         return listStr.split(" ");
+    }
+
+    public String getListString(String input) {
+        String listStrWithQuestionMark = input.split(" is ")[1];
+        return listStrWithQuestionMark.substring(0, listStrWithQuestionMark.length()-1);
     }
 
 }

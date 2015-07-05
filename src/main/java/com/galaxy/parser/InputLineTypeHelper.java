@@ -1,4 +1,4 @@
-package com.galaxy;
+package com.galaxy.parser;
 
 import static com.galaxy.constant.Constants.*;
 

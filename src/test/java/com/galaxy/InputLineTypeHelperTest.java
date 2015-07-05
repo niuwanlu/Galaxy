@@ -1,5 +1,6 @@
 package com.galaxy;
 
+import com.galaxy.parser.InputLineTypeHelper;
 import org.junit.Before;
 import org.junit.Test;
 

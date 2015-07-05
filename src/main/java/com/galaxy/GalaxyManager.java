@@ -2,7 +2,8 @@ package com.galaxy;
 
 import com.galaxy.constant.Constants;
 import com.galaxy.constant.RomanNum;
-import com.galaxy.processor.InputLineParser;
+import com.galaxy.parser.InputLineParser;
+import com.galaxy.parser.InputLineTypeHelper;
 
 /**
  * Created by wlniu on 04/07/15.
@@ -22,7 +23,7 @@ public class GalaxyManager {
         this.unitMapper = unitMapper;
     }
 
-    public void processInput(String input) {
+    public String processInput(String input) {
 
         String type = InputLineTypeHelper.getInputType(input);
 
@@ -30,9 +31,13 @@ public class GalaxyManager {
             String unitName = inputLineParser.getUnitName(input);
             RomanNum romanNum = inputLineParser.getRomanNumeral(input);
             unitMapper.putIntoUnitMap(unitName, romanNum);
+            return null;
         } else if (type.equals(Constants.UNIT_QUESTION)) {
             String[] unitList = inputLineParser.getUnitList(input);
             int totalValue = unitMapper.getTotalValueOfUnitList(unitList);
+            return inputLineParser.getListString(input) + " is " + String.valueOf(totalValue);
+        } else {
+            return "I have no idea what you are talking about";
         }
 
     }
