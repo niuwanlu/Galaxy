@@ -75,8 +75,23 @@ public class GalaxyManagerTest {
         when(inputLineParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits")).thenReturn("Silver");
         when(unitMapper.getTotalValueOfUnitList(strList)).thenReturn(2);
         galaxyManager.processInput("glob glob Silver is 34 Credits");
-        System.out.println(unitMapper.getTotalValueOfUnitList(strList)+"----------");
+        System.out.println(unitMapper.getTotalValueOfUnitList(strList) + "----------");
         verify(goodMapper).putIntoMap("Silver", 17);
+    }
+
+    @Test
+    public void shouldInvokeWhenCreditQuestion() throws Exception {
+        String[] strList = {"glob", "prok"};
+        when(inputLineParser.getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?")).thenReturn("glob prok");
+        when(inputLineParser.getUnitList("glob prok")).thenReturn(strList);
+        when(inputLineParser.getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?")).thenReturn("Silver");
+        galaxyManager.processInput("how many Credits is glob prok Silver ?");
+        verify(inputLineParser).getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?");
+        verify(inputLineParser).getUnitList("glob prok");
+        verify(unitMapper).getTotalValueOfUnitList(strList);
+        verify(inputLineParser).getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?");
+        verify(goodMapper).getUnivalenceByName("Silver");
+
     }
 
     @Test

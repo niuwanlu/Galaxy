@@ -50,6 +50,13 @@ public class GalaxyManager {
             double univalence = totalCredits/totalValueOfUnitList;
             goodMapper.putIntoMap(goodName, univalence);
             return null;
+        } else if (type.equals(Constants.CREDIT_QUESTION)) {
+            String unitListInline = inputLineParser.getUnitListInlineFromCreditQuestion(input);
+            String[] unitList = inputLineParser.getUnitList(unitListInline);
+            int totalValueOfUnitList = unitMapper.getTotalValueOfUnitList(unitList);
+            String goodName = inputLineParser.getGoodNameFromCreditQuestion(input);
+            Double univalence = goodMapper.getUnivalenceByName(goodName);
+            return null;
         } else {
             return "I have no idea what you are talking about";
         }

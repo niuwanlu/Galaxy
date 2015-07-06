@@ -39,13 +39,30 @@ public class InputLineParser {
         return goodName;
     }
 
-    private String getStringBeforeIs(String str) {
-        return str.split(" is ")[0];
-    }
-
     public int getGoodTotalCreditsFromCreditState(String input) {
         String[] words = input.split(" ");
         return Integer.parseInt(words[words.length-2]);
     }
 
+    public String getUnitListInlineFromCreditQuestion(String input) {
+        String stringAfterIs = getStringAfterIs(input);
+        String stringAfterIsWithoutMark = stringAfterIs.substring(0, stringAfterIs.lastIndexOf(" "));
+        String unitList = stringAfterIsWithoutMark.substring(0, stringAfterIsWithoutMark.lastIndexOf(" "));
+        return unitList;
+    }
+
+    private String getStringBeforeIs(String str) {
+        return str.split(" is ")[0];
+    }
+
+    private String getStringAfterIs(String str) {
+        return str.split(" is ")[1];
+    }
+
+    public String getGoodNameFromCreditQuestion(String input) {
+        String stringAfterIs = getStringAfterIs(input);
+        String stringAfterIsWithoutMark = stringAfterIs.substring(0, stringAfterIs.lastIndexOf(" "));
+        String goodName = stringAfterIsWithoutMark.substring(stringAfterIsWithoutMark.lastIndexOf(" ") + 1);
+        return goodName;
+    }
 }

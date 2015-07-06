@@ -52,4 +52,14 @@ public class InputLineParserTest {
     public void shouldGetGoodTotalCredits() throws Exception {
         assertEquals(34, inputLineParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits"));
     }
+
+    @Test
+    public void shouldGetUnitListInlineFromCreditQuestion() throws Exception {
+        assertEquals("glob prok", inputLineParser.getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?"));
+    }
+
+    @Test
+    public void shouldGetGoodNameFromCreditQuestion() throws Exception {
+        assertEquals("Silver", inputLineParser.getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?"));
+    }
 }
