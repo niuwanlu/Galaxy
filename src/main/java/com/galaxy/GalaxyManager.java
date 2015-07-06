@@ -36,6 +36,13 @@ public class GalaxyManager {
             String[] unitList = inputLineParser.getUnitList(input);
             int totalValue = unitMapper.getTotalValueOfUnitList(unitList);
             return inputLineParser.getListString(input) + " is " + String.valueOf(totalValue);
+        } else if (type.equals(Constants.CREDIT_STATE)) {
+            String unitListInline = inputLineParser.getUnitListInlineFromCreditState(input);
+            String[] unitList = inputLineParser.getUnitList(unitListInline);
+            int totalValueOfUnitList = unitMapper.getTotalValueOfUnitList(unitList);
+            int totalCredits = inputLineParser.getGoodTotalCreditsFromCreditState(unitListInline);
+
+            return null;
         } else {
             return "I have no idea what you are talking about";
         }

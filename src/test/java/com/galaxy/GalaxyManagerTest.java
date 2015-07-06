@@ -39,10 +39,19 @@ public class GalaxyManagerTest {
     }
 
     @Test
-    public void shouldInvokeUnitTotalCalculatorWhenPriceQuestion() throws Exception {
+    public void shouldCalculateUnitTotalWhenPriceQuestion() throws Exception {
         galaxyManager.processInput("how much is pish tegj?");
         verify(inputLineParser).getUnitList("how much is pish tegj?");
         verify(unitMapper).getTotalValueOfUnitList(any(String[].class));
+    }
+
+    @Test
+    public void shouldInvokeGetTotalValueOfUnitListWhenCreditState() throws Exception {
+        galaxyManager.processInput("glob glob Silver is 34 Credits");
+        verify(inputLineParser).getUnitListInlineFromCreditState("glob glob Silver is 34 Credits");
+        verify(inputLineParser).getUnitList(any(String.class));
+        verify(unitMapper).getTotalValueOfUnitList(any(String[].class));
+        verify(inputLineParser).getGoodTotalCreditsFromCreditState(any(String.class));
     }
 
     @Test
