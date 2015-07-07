@@ -7,12 +7,12 @@ import com.galaxy.constant.RomanNum;
  */
 public class InputLineParser {
 
-    public String getUnitName(String input) {
+    public String getUnitNameFromUnitState(String input) {
         String[] words = input.split(" ", 2);
         return words[0];
     }
 
-    public RomanNum getRomanNumeral(String input) {
+    public RomanNum getRomanNumeralFromUnitState(String input) {
         String[] words = input.split(" is ", 2);
         return RomanNum.valueOf(words[1]);
     }
@@ -28,14 +28,12 @@ public class InputLineParser {
 
     public String getUnitListInlineFromCreditState(String input) {
         String stringBeforeIs = getStringBeforeIs(input);
-        String unitListInline = stringBeforeIs.substring(0, stringBeforeIs.lastIndexOf(" "));
-        return unitListInline;
+        return stringBeforeIs.substring(0, stringBeforeIs.lastIndexOf(" "));
     }
 
     public String getGoodNameFromCreditState(String input) {
         String stringBeforeIs = getStringBeforeIs(input);
-        String goodName = stringBeforeIs.substring(stringBeforeIs.lastIndexOf(" ") + 1);
-        return goodName;
+        return stringBeforeIs.substring(stringBeforeIs.lastIndexOf(" ") + 1);
     }
 
     public int getGoodTotalCreditsFromCreditState(String input) {
@@ -44,10 +42,18 @@ public class InputLineParser {
     }
 
     public String getUnitListInlineFromCreditQuestion(String input) {
+        String stringAfterIsWithoutMark = getStringAfterIsWithoutMark(input);
+        return stringAfterIsWithoutMark.substring(0, stringAfterIsWithoutMark.lastIndexOf(" "));
+    }
+
+    private String getStringAfterIsWithoutMark(String input) {
         String stringAfterIs = getStringAfterIs(input);
-        String stringAfterIsWithoutMark = stringAfterIs.substring(0, stringAfterIs.lastIndexOf(" "));
-        String unitList = stringAfterIsWithoutMark.substring(0, stringAfterIsWithoutMark.lastIndexOf(" "));
-        return unitList;
+        return stringAfterIs.substring(0, stringAfterIs.lastIndexOf(" "));
+    }
+
+    public String getGoodNameFromCreditQuestion(String input) {
+        String stringAfterIsWithoutMark = getStringAfterIsWithoutMark(input);
+        return stringAfterIsWithoutMark.substring(stringAfterIsWithoutMark.lastIndexOf(" ") + 1);
     }
 
     private String getStringBeforeIs(String str) {
@@ -56,12 +62,5 @@ public class InputLineParser {
 
     private String getStringAfterIs(String str) {
         return str.split(" is ")[1];
-    }
-
-    public String getGoodNameFromCreditQuestion(String input) {
-        String stringAfterIs = getStringAfterIs(input);
-        String stringAfterIsWithoutMark = stringAfterIs.substring(0, stringAfterIs.lastIndexOf(" "));
-        String goodName = stringAfterIsWithoutMark.substring(stringAfterIsWithoutMark.lastIndexOf(" ") + 1);
-        return goodName;
     }
 }

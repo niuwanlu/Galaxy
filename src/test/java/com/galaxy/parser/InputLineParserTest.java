@@ -20,12 +20,12 @@ public class InputLineParserTest {
 
     @Test
     public void shouldReturnUnitName() throws Exception {
-        assertEquals("glob", inputLineParser.getUnitName("glob is I"));
+        assertEquals("glob", inputLineParser.getUnitNameFromUnitState("glob is I"));
     }
 
     @Test
     public void shouldGetRomanNumeral() throws Exception {
-        assertEquals(RomanNum.I, inputLineParser.getRomanNumeral("glob is I"));
+        assertEquals(RomanNum.I, inputLineParser.getRomanNumeralFromUnitState("glob is I"));
     }
 
     @Test

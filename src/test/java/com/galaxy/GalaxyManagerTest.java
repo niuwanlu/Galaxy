@@ -36,11 +36,11 @@ public class GalaxyManagerTest {
 
     @Test
     public void shouldPutUnitNameAndRomanNumIntoMapWhenUnitState() throws Exception {
-        when(inputLineParser.getUnitName("glob is I")).thenReturn("glob");
-        when(inputLineParser.getRomanNumeral("glob is I")).thenReturn(RomanNum.I);
+        when(inputLineParser.getUnitNameFromUnitState("glob is I")).thenReturn("glob");
+        when(inputLineParser.getRomanNumeralFromUnitState("glob is I")).thenReturn(RomanNum.I);
         galaxyManager.processInput("glob is I");
-        verify(inputLineParser).getUnitName("glob is I");
-        verify(inputLineParser).getRomanNumeral("glob is I");
+        verify(inputLineParser).getUnitNameFromUnitState("glob is I");
+        verify(inputLineParser).getRomanNumeralFromUnitState("glob is I");
         verify(unitMapper).putIntoUnitMap("glob", RomanNum.I);
     }
 

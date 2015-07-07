@@ -33,8 +33,8 @@ public class GalaxyManager {
         String type = InputLineTypeHelper.getInputType(input);
 
         if (type.equals(InputLineType.UNIT_STATE)) {
-            String unitName = inputLineParser.getUnitName(input);
-            RomanNum romanNum = inputLineParser.getRomanNumeral(input);
+            String unitName = inputLineParser.getUnitNameFromUnitState(input);
+            RomanNum romanNum = inputLineParser.getRomanNumeralFromUnitState(input);
             unitMapper.putIntoUnitMap(unitName, romanNum);
             return null;
         } else if (type.equals(InputLineType.UNIT_QUESTION)) {
