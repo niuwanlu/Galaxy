@@ -10,6 +10,5 @@ public class RomanNumTest {
     public void shouldReturnValue() throws Exception {
         RomanNum romanNum = RomanNum.I;
         assertEquals(1, romanNum.getValue());
-
     }
 }
