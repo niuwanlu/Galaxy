@@ -5,7 +5,7 @@ import static com.galaxy.constant.InputLineType.*;
 /**
  * Created by wlniu on 04/07/15.
  */
-public class InputLineTypeHelper {
+public class InputLineTypeParser {
 
     public static String getInputType(String inputLine) {
         if (inputLine.contains("how many")) {

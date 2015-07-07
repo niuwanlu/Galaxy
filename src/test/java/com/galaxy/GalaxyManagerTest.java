@@ -3,7 +3,7 @@ package com.galaxy;
 import com.galaxy.constant.RomanNum;
 import com.galaxy.mapper.GoodMapper;
 import com.galaxy.mapper.UnitMapper;
-import com.galaxy.parser.InputLineParser;
+import com.galaxy.parser.InputLineContentParser;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -20,7 +20,7 @@ public class GalaxyManagerTest {
     private GalaxyManager galaxyManager;
 
     @Mock
-    InputLineParser inputLineParser;
+    InputLineContentParser inputLineContentParser;
 
     @Mock
     UnitMapper unitMapper;
@@ -31,51 +31,51 @@ public class GalaxyManagerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        galaxyManager = new GalaxyManager(inputLineParser, unitMapper, goodMapper);
+        galaxyManager = new GalaxyManager(inputLineContentParser, unitMapper, goodMapper);
     }
 
     @Test
     public void shouldPutUnitNameAndRomanNumIntoMapWhenUnitState() throws Exception {
-        when(inputLineParser.getUnitNameFromUnitState("glob is I")).thenReturn("glob");
-        when(inputLineParser.getRomanNumeralFromUnitState("glob is I")).thenReturn(RomanNum.I);
+        when(inputLineContentParser.getUnitNameFromUnitState("glob is I")).thenReturn("glob");
+        when(inputLineContentParser.getRomanNumeralFromUnitState("glob is I")).thenReturn(RomanNum.I);
         galaxyManager.processInput("glob is I");
-        verify(inputLineParser).getUnitNameFromUnitState("glob is I");
-        verify(inputLineParser).getRomanNumeralFromUnitState("glob is I");
+        verify(inputLineContentParser).getUnitNameFromUnitState("glob is I");
+        verify(inputLineContentParser).getRomanNumeralFromUnitState("glob is I");
         verify(unitMapper).putIntoUnitMap("glob", RomanNum.I);
     }
 
     @Test
     public void shouldCalculateUnitTotalWhenUnitQuestion() throws Exception {
-        when(inputLineParser.getUnitListInlineFromUnitQuestion("how much is pish tegj?")).thenReturn("pish tegj");
+        when(inputLineContentParser.getUnitListInlineFromUnitQuestion("how much is pish tegj?")).thenReturn("pish tegj");
         galaxyManager.processInput("how much is pish tegj?");
-        verify(inputLineParser, atLeast(1)).getUnitListInlineFromUnitQuestion("how much is pish tegj?");
-        verify(inputLineParser).getUnitListFromUnitListInline("pish tegj");
+        verify(inputLineContentParser, atLeast(1)).getUnitListInlineFromUnitQuestion("how much is pish tegj?");
+        verify(inputLineContentParser).getUnitListFromUnitListInline("pish tegj");
         verify(unitMapper).getTotalValueOfUnitList(any(String[].class));
     }
 
     @Test
     public void shouldInvokeGetTotalValueOfUnitListWhenCreditState() throws Exception {
         String[] strList = {"glob", "glob"};
-        when(inputLineParser.getUnitListInlineFromCreditState("glob glob Silver is 34 Credits")).thenReturn("glob glob");
-        when(inputLineParser.getUnitListFromUnitListInline("glob glob")).thenReturn(strList);
-        when(inputLineParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits")).thenReturn(34);
-        when(inputLineParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits")).thenReturn("Silver");
+        when(inputLineContentParser.getUnitListInlineFromCreditState("glob glob Silver is 34 Credits")).thenReturn("glob glob");
+        when(inputLineContentParser.getUnitListFromUnitListInline("glob glob")).thenReturn(strList);
+        when(inputLineContentParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits")).thenReturn(34);
+        when(inputLineContentParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits")).thenReturn("Silver");
         when(unitMapper.getTotalValueOfUnitList(strList)).thenReturn(2);
         galaxyManager.processInput("glob glob Silver is 34 Credits");
-        verify(inputLineParser).getUnitListInlineFromCreditState("glob glob Silver is 34 Credits");
-        verify(inputLineParser).getUnitListFromUnitListInline(any(String.class));
+        verify(inputLineContentParser).getUnitListInlineFromCreditState("glob glob Silver is 34 Credits");
+        verify(inputLineContentParser).getUnitListFromUnitListInline(any(String.class));
         verify(unitMapper).getTotalValueOfUnitList(any(String[].class));
-        verify(inputLineParser).getGoodTotalCreditsFromCreditState(any(String.class));
-        verify(inputLineParser).getGoodNameFromCreditState("glob glob Silver is 34 Credits");
+        verify(inputLineContentParser).getGoodTotalCreditsFromCreditState(any(String.class));
+        verify(inputLineContentParser).getGoodNameFromCreditState("glob glob Silver is 34 Credits");
     }
 
     @Test
     public void shouldPutGoodNameAndUnivalenceIntoMapWhenCreditState() throws Exception {
         String[] strList = {"glob", "glob"};
-        when(inputLineParser.getUnitListInlineFromCreditState("glob glob Silver is 34 Credits")).thenReturn("glob glob");
-        when(inputLineParser.getUnitListFromUnitListInline("glob glob")).thenReturn(strList);
-        when(inputLineParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits")).thenReturn(34);
-        when(inputLineParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits")).thenReturn("Silver");
+        when(inputLineContentParser.getUnitListInlineFromCreditState("glob glob Silver is 34 Credits")).thenReturn("glob glob");
+        when(inputLineContentParser.getUnitListFromUnitListInline("glob glob")).thenReturn(strList);
+        when(inputLineContentParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits")).thenReturn(34);
+        when(inputLineContentParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits")).thenReturn("Silver");
         when(unitMapper.getTotalValueOfUnitList(strList)).thenReturn(2);
         galaxyManager.processInput("glob glob Silver is 34 Credits");
         verify(goodMapper).putIntoGoodMap("Silver", 17);
@@ -84,14 +84,14 @@ public class GalaxyManagerTest {
     @Test
     public void shouldInvokeWhenCreditQuestion() throws Exception {
         String[] strList = {"glob", "prok"};
-        when(inputLineParser.getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?")).thenReturn("glob prok");
-        when(inputLineParser.getUnitListFromUnitListInline("glob prok")).thenReturn(strList);
-        when(inputLineParser.getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?")).thenReturn("Silver");
+        when(inputLineContentParser.getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?")).thenReturn("glob prok");
+        when(inputLineContentParser.getUnitListFromUnitListInline("glob prok")).thenReturn(strList);
+        when(inputLineContentParser.getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?")).thenReturn("Silver");
         galaxyManager.processInput("how many Credits is glob prok Silver ?");
-        verify(inputLineParser).getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?");
-        verify(inputLineParser).getUnitListFromUnitListInline("glob prok");
+        verify(inputLineContentParser).getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?");
+        verify(inputLineContentParser).getUnitListFromUnitListInline("glob prok");
         verify(unitMapper).getTotalValueOfUnitList(strList);
-        verify(inputLineParser).getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?");
+        verify(inputLineContentParser).getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?");
         verify(goodMapper).getUnivalenceByName("Silver");
 
     }

@@ -8,10 +8,10 @@ import org.mockito.Spy;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class InputLineParserTest {
+public class InputLineContentParserTest {
 
     @Spy
-    InputLineParser inputLineParser;
+    InputLineContentParser inputLineContentParser;
 
     @Before
     public void setUp() throws Exception {
@@ -20,17 +20,17 @@ public class InputLineParserTest {
 
     @Test
     public void shouldReturnUnitName() throws Exception {
-        assertEquals("glob", inputLineParser.getUnitNameFromUnitState("glob is I"));
+        assertEquals("glob", inputLineContentParser.getUnitNameFromUnitState("glob is I"));
     }
 
     @Test
     public void shouldGetRomanNumeral() throws Exception {
-        assertEquals(RomanNum.I, inputLineParser.getRomanNumeralFromUnitState("glob is I"));
+        assertEquals(RomanNum.I, inputLineContentParser.getRomanNumeralFromUnitState("glob is I"));
     }
 
     @Test
     public void shouldGetUnitList() throws Exception {
-        String[] unitList = inputLineParser.getUnitListFromUnitListInline("pish tegj glob glob");
+        String[] unitList = inputLineContentParser.getUnitListFromUnitListInline("pish tegj glob glob");
         assertEquals(4, unitList.length);
         assertEquals("pish", unitList[0]);
         assertEquals("tegj", unitList[1]);
@@ -40,26 +40,26 @@ public class InputLineParserTest {
 
     @Test
     public void shouldGetUnitInlineFromCreditState() throws Exception {
-        assertEquals("glob glob", inputLineParser.getUnitListInlineFromCreditState("glob glob Silver is 34 Credits"));
+        assertEquals("glob glob", inputLineContentParser.getUnitListInlineFromCreditState("glob glob Silver is 34 Credits"));
     }
 
     @Test
     public void shouldGetGoodNameFromCreditState() throws Exception {
-        assertEquals("Silver", inputLineParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits"));
+        assertEquals("Silver", inputLineContentParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits"));
     }
 
     @Test
     public void shouldGetGoodTotalCredits() throws Exception {
-        assertEquals(34, inputLineParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits"));
+        assertEquals(34, inputLineContentParser.getGoodTotalCreditsFromCreditState("glob glob Silver is 34 Credits"));
     }
 
     @Test
     public void shouldGetUnitListInlineFromCreditQuestion() throws Exception {
-        assertEquals("glob prok", inputLineParser.getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?"));
+        assertEquals("glob prok", inputLineContentParser.getUnitListInlineFromCreditQuestion("how many Credits is glob prok Silver ?"));
     }
 
     @Test
     public void shouldGetGoodNameFromCreditQuestion() throws Exception {
-        assertEquals("Silver", inputLineParser.getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?"));
+        assertEquals("Silver", inputLineContentParser.getGoodNameFromCreditQuestion("how many Credits is glob prok Silver ?"));
     }
 }

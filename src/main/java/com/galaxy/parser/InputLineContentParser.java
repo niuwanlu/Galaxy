@@ -5,7 +5,7 @@ import com.galaxy.constant.RomanNum;
 /**
  * Created by wlniu on 04/07/15.
  */
-public class InputLineParser {
+public class InputLineContentParser {
 
     public String getUnitNameFromUnitState(String input) {
         String[] words = input.split(" ", 2);
