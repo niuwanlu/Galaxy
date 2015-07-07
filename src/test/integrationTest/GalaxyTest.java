@@ -8,13 +8,13 @@ public class GalaxyTest {
     @Test
     public void main() {
         GalaxyManager galaxyManager = new GalaxyManager();
-        galaxyManager.processInput("glob is I");
-        galaxyManager.processInput("prok is V");
-        galaxyManager.processInput("pish is X");
-        galaxyManager.processInput("tegj is L");
-        galaxyManager.processInput("glob glob Silver is 34 Credits");
-        galaxyManager.processInput("glob prok Gold is 57800 Credits");
-        galaxyManager.processInput("pish pish Iron is 3910 Credits");
+        assertEquals("", galaxyManager.processInput("glob is I"));
+        assertEquals("", galaxyManager.processInput("prok is V"));
+        assertEquals("", galaxyManager.processInput("pish is X"));
+        assertEquals("", galaxyManager.processInput("tegj is L"));
+        assertEquals("", galaxyManager.processInput("glob glob Silver is 34 Credits"));
+        assertEquals("", galaxyManager.processInput("glob prok Gold is 57800 Credits"));
+        assertEquals("", galaxyManager.processInput("pish pish Iron is 3910 Credits"));
         assertEquals("glob glob is 2", galaxyManager.processInput("how much is glob glob?"));
         assertEquals("pish pish is 20", galaxyManager.processInput("how much is pish pish?"));
         assertEquals("glob prok is 4", galaxyManager.processInput("how much is glob prok?"));
