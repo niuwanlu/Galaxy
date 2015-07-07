@@ -22,5 +22,6 @@ public class GalaxyTest {
         assertEquals("glob prok Silver is 68 Credits", galaxyManager.processInput("how many Credits is glob prok Silver ?"));
         assertEquals("glob prok Gold is 57800 Credits", galaxyManager.processInput("how many Credits is glob prok Gold ?"));
         assertEquals("glob prok Iron is 782 Credits", galaxyManager.processInput("how many Credits is glob prok Iron ?"));
+        assertEquals("I have no idea what you are talking about", galaxyManager.processInput("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"));
     }
 }

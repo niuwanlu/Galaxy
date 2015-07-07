@@ -18,7 +18,7 @@ public class GoodMapper {
         this.goodMap = goodMap;
     }
 
-    public void putIntoMap(String goodName, double univalence) {
+    public void putIntoGoodMap(String goodName, double univalence) {
         goodMap.put(goodName, univalence);
     }
 

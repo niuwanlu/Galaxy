@@ -1,6 +1,6 @@
 package com.galaxy;
 
-import com.galaxy.constant.Constants;
+import com.galaxy.constant.InputLineType;
 import com.galaxy.constant.RomanNum;
 import com.galaxy.mapper.GoodMapper;
 import com.galaxy.mapper.UnitMapper;
@@ -32,26 +32,26 @@ public class GalaxyManager {
 
         String type = InputLineTypeHelper.getInputType(input);
 
-        if (type.equals(Constants.UNIT_STATE)) {
+        if (type.equals(InputLineType.UNIT_STATE)) {
             String unitName = inputLineParser.getUnitName(input);
             RomanNum romanNum = inputLineParser.getRomanNumeral(input);
             unitMapper.putIntoUnitMap(unitName, romanNum);
             return null;
-        } else if (type.equals(Constants.UNIT_QUESTION)) {
+        } else if (type.equals(InputLineType.UNIT_QUESTION)) {
             String unitListInline = inputLineParser.getUnitListInlineFromUnitQuestion(input);
             String[] unitList = inputLineParser.getUnitListFromUnitListInline(unitListInline);
             int totalValue = unitMapper.getTotalValueOfUnitList(unitList);
             return inputLineParser.getUnitListInlineFromUnitQuestion(input) + " is " + String.valueOf(totalValue);
-        } else if (type.equals(Constants.CREDIT_STATE)) {
+        } else if (type.equals(InputLineType.CREDIT_STATE)) {
             String unitListInline = inputLineParser.getUnitListInlineFromCreditState(input);
             String[] unitList = inputLineParser.getUnitListFromUnitListInline(unitListInline);
             int totalValueOfUnitList = unitMapper.getTotalValueOfUnitList(unitList);
             int totalCredits = inputLineParser.getGoodTotalCreditsFromCreditState(input);
             String goodName = inputLineParser.getGoodNameFromCreditState(input);
             double univalence = (double)totalCredits/totalValueOfUnitList;
-            goodMapper.putIntoMap(goodName, univalence);
+            goodMapper.putIntoGoodMap(goodName, univalence);
             return null;
-        } else if (type.equals(Constants.CREDIT_QUESTION)) {
+        } else if (type.equals(InputLineType.CREDIT_QUESTION)) {
             String unitListInline = inputLineParser.getUnitListInlineFromCreditQuestion(input);
             String[] unitList = inputLineParser.getUnitListFromUnitListInline(unitListInline);
             int totalValueOfUnitList = unitMapper.getTotalValueOfUnitList(unitList);

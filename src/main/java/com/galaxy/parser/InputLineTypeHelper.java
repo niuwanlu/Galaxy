@@ -1,6 +1,6 @@
 package com.galaxy.parser;
 
-import static com.galaxy.constant.Constants.*;
+import static com.galaxy.constant.InputLineType.*;
 
 /**
  * Created by wlniu on 04/07/15.

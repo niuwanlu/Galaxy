@@ -23,14 +23,14 @@ public class GoodMapperTest {
 
     @Test
     public void shouldPutIntoMap() throws Exception {
-        goodMapper.putIntoMap("Silver", 17);
+        goodMapper.putIntoGoodMap("Silver", 17);
         assertEquals(new Double(17), goodMap.get("Silver"));
 
     }
 
     @Test
     public void shouldGetUnivalenceByName() throws Exception {
-        goodMapper.putIntoMap("Silver", 17);
+        goodMapper.putIntoGoodMap("Silver", 17);
         assertEquals(new Double(17), goodMapper.getUnivalenceByName("Silver"));
     }
 }

@@ -78,7 +78,7 @@ public class GalaxyManagerTest {
         when(inputLineParser.getGoodNameFromCreditState("glob glob Silver is 34 Credits")).thenReturn("Silver");
         when(unitMapper.getTotalValueOfUnitList(strList)).thenReturn(2);
         galaxyManager.processInput("glob glob Silver is 34 Credits");
-        verify(goodMapper).putIntoMap("Silver", 17);
+        verify(goodMapper).putIntoGoodMap("Silver", 17);
     }
 
     @Test

@@ -4,7 +4,7 @@ import com.galaxy.parser.InputLineTypeHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.galaxy.constant.Constants.*;
+import static com.galaxy.constant.InputLineType.*;
 import static org.junit.Assert.assertEquals;
 
 public class InputLineTypeHelperTest {
