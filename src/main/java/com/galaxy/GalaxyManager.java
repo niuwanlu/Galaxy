@@ -38,25 +38,27 @@ public class GalaxyManager {
             unitMapper.putIntoUnitMap(unitName, romanNum);
             return null;
         } else if (type.equals(Constants.UNIT_QUESTION)) {
-            String[] unitList = inputLineParser.getUnitList(input);
+            String unitListInline = inputLineParser.getUnitListInlineFromUnitQuestion(input);
+            String[] unitList = inputLineParser.getUnitListFromUnitListInline(unitListInline);
             int totalValue = unitMapper.getTotalValueOfUnitList(unitList);
-            return inputLineParser.getListString(input) + " is " + String.valueOf(totalValue);
+            return inputLineParser.getUnitListInlineFromUnitQuestion(input) + " is " + String.valueOf(totalValue);
         } else if (type.equals(Constants.CREDIT_STATE)) {
             String unitListInline = inputLineParser.getUnitListInlineFromCreditState(input);
-            String[] unitList = inputLineParser.getUnitList(unitListInline);
+            String[] unitList = inputLineParser.getUnitListFromUnitListInline(unitListInline);
             int totalValueOfUnitList = unitMapper.getTotalValueOfUnitList(unitList);
             int totalCredits = inputLineParser.getGoodTotalCreditsFromCreditState(input);
             String goodName = inputLineParser.getGoodNameFromCreditState(input);
-            double univalence = totalCredits/totalValueOfUnitList;
+            double univalence = (double)totalCredits/totalValueOfUnitList;
             goodMapper.putIntoMap(goodName, univalence);
             return null;
         } else if (type.equals(Constants.CREDIT_QUESTION)) {
             String unitListInline = inputLineParser.getUnitListInlineFromCreditQuestion(input);
-            String[] unitList = inputLineParser.getUnitList(unitListInline);
+            String[] unitList = inputLineParser.getUnitListFromUnitListInline(unitListInline);
             int totalValueOfUnitList = unitMapper.getTotalValueOfUnitList(unitList);
             String goodName = inputLineParser.getGoodNameFromCreditQuestion(input);
             Double univalence = goodMapper.getUnivalenceByName(goodName);
-            return null;
+            int calculatedTotalCredits = (int) (totalValueOfUnitList * univalence);
+            return unitListInline + " " + goodName + " is " + String.valueOf(calculatedTotalCredits) + " Credits";
         } else {
             return "I have no idea what you are talking about";
         }

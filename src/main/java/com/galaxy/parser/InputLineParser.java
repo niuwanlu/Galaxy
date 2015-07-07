@@ -17,12 +17,11 @@ public class InputLineParser {
         return RomanNum.valueOf(words[1]);
     }
 
-    public String[] getUnitList(String input) {
-        String listStr = getListString(input);
-        return listStr.split(" ");
+    public String[] getUnitListFromUnitListInline(String input) {
+        return input.split(" ");
     }
 
-    public String getListString(String input) {
+    public String getUnitListInlineFromUnitQuestion(String input) {
         String listStrWithQuestionMark = input.split(" is ")[1];
         return listStrWithQuestionMark.substring(0, listStrWithQuestionMark.length()-1);
     }

@@ -30,7 +30,7 @@ public class InputLineParserTest {
 
     @Test
     public void shouldGetUnitList() throws Exception {
-        String[] unitList = inputLineParser.getUnitList("how much is pish tegj glob glob ?");
+        String[] unitList = inputLineParser.getUnitListFromUnitListInline("pish tegj glob glob");
         assertEquals(4, unitList.length);
         assertEquals("pish", unitList[0]);
         assertEquals("tegj", unitList[1]);
